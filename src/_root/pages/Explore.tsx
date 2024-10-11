@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 const Explore = () => {
-  const {ref, inView } = useInView();
+  const { ref, inView } = useInView();
   const { data: posts, fetchNextPage, hasNextPage } = useGetPosts()
   const [searchValue, setSearchValue] = useState('')
   const debounceValue = useDebounce(searchValue, 500)
@@ -23,7 +23,7 @@ const Explore = () => {
     if (inView && !searchValue) {
       fetchNextPage()
     }
-  }, [inView, searchValue])
+  }, [inView])
 
   if (!posts) {
     return (
@@ -36,7 +36,7 @@ const Explore = () => {
   const shouldShowSearchResults = searchValue !== ''
   const shouldShowPosts =
     !shouldShowSearchResults &&
-    posts?.pages.every((item) => item.documents.length === 0)
+    posts?.pages.every((item) => item?.documents.length === 0)
 
   return (
     <div className="explore-container">
@@ -83,7 +83,7 @@ const Explore = () => {
           <p className="text-light-4 mt-10 text-center w-full">End of Posts</p>
         ) : (
           posts.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
+            <GridPostList key={`page-${index}`} posts={item ? item.documents : []} />
           ))
         )}
       </div>
