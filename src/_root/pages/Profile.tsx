@@ -27,6 +27,7 @@ const StatBlock = ({ value, label }: StabBlockProps) => (
 
 const Profile = () => {
   const { id } = useParams();
+  console.log('Profile component rendered with ID:', id);
   const { user } = useUserContext();
   const { pathname } = useLocation();
 
