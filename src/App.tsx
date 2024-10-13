@@ -9,6 +9,7 @@ import RootLayout from './_root/RootLayout';
 import { Toaster } from "@/components/ui/toaster"
 
 const App = () => {
+  console.log('App component rendered');
   return (
     <main className='flex h-screen'>
       <Routes>
@@ -33,7 +34,7 @@ const App = () => {
       </Routes>
       <Toaster />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
